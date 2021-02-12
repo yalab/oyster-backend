@@ -11,7 +11,8 @@ services:
     volumes:
       - db-data:/var/lib/postgresql/data
   app:
-    image: rust:1.50-slim-buster
+    build:
+      context: .
     tty: true
     stdin_open: true
     depends_on:

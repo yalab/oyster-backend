@@ -1,0 +1,23 @@
+version: '3'
+services:
+  db:
+    image: postgres:13
+    tty: true
+    stdin_open: true
+    environment:
+      POSTGRES_PASSWORD: password
+    ports:
+      - 8080
+    volumes:
+      - db-data:/var/lib/postgresql/data
+  app:
+    image: rust:1.50-slim-buster
+    tty: true
+    stdin_open: true
+    depends_on:
+      - db
+    volumes:
+      - ./:/app:cached
+    working_dir: /app
+volumes:
+  db-data:

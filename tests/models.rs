@@ -11,5 +11,10 @@ fn download_test() {
         Err(_)   => panic!("No such site"),
     };
     let response = site.get();
-    assert_eq!(200, response.status());
+    println!("{:#?}", response);
+    let m = async {
+        return response.text().await
+    };
+    let body = tokio::runtime::Runtime::new().unwrap().block_on(m);
+    println!("{:#?}", body);
 }

@@ -11,3 +11,10 @@ fn download_test() {
     let len = body.len();
     assert_eq!(&body[(len - 9)..(len - 2)], "</html>");
 }
+
+#[test]
+fn parse_test() {
+    let site = Site{id: 0, url: String::new(), crawled_at: None};
+    let body = std::fs::read_to_string("tests/fixtures/files/sumo.jp.html").unwrap();
+    site.parse(body);
+}

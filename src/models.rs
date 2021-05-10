@@ -15,6 +15,9 @@ impl Site {
         };
         return tokio::runtime::Runtime::new().unwrap().block_on(m).unwrap();
     }
+    pub fn parse(&self, str: String) -> String{
+        return str;
+    }
 }
 
 #[derive(Insertable)]

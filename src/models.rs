@@ -1,4 +1,7 @@
 use super::schema::sites;
+use html5ever::tendril::TendrilSink;
+use html5ever::parse_document;
+use markup5ever_rcdom::RcDom;
 
 #[derive(Queryable)]
 
@@ -16,6 +19,7 @@ impl Site {
         return tokio::runtime::Runtime::new().unwrap().block_on(m).unwrap();
     }
     pub fn parse(&self, str: String) -> String{
+        let dom: RcDom = parse_document(RcDom::default(), Default::default()).one(str.clone());
         return str;
     }
 }
